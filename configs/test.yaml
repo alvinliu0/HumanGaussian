@@ -1,0 +1,109 @@
+name: "name-of-this-experiment-run"
+tag: "${rmspace:${system.prompt_processor.prompt},_}"
+exp_root_dir: "/path/to/your/save/folder"
+seed: 0
+ 
+data_type: "random-camera-datamodule"
+data:
+  batch_size: 8
+  eval_camera_distance: 2.0
+  camera_distance_range: [1.5, 2.0]
+  light_sample_strategy: "dreamfusion3dgs"
+  height: 1024
+  width: 1024
+  # resolution_milestones: [600]
+  eval_height: 1024
+  eval_width: 1024
+  elevation_range: [-30, 30]
+
+  enable_near_head_poses: true
+  head_offset: 0.65
+  head_camera_distance_range: [0.4, 0.6]
+  head_prob: 0.25
+  head_start_step: 1200
+  head_end_step: 3600
+  head_azimuth_range: [0, 180]
+
+  enable_near_back_poses: true
+  back_offset: 0.65
+  back_camera_distance_range: [0.6, 0.8]
+  back_prob: 0.20
+  back_start_step: 1200
+  back_end_step: 3600
+  back_azimuth_range: [-180, 0]
+
+system_type: "gaussiandreamer-system"
+system:
+  radius: ${data.eval_camera_distance}
+  texture_structure_joint: true
+  smplx_path: "/path/to/the/downloaded/smplx_models"
+  disable_hand_densification: false
+  pts_num: 100000
+  densify_prune_start_step: 300
+  densify_prune_end_step: 2100
+  densify_prune_interval: 300
+  size_threshold: 20
+  max_grad: 0.0002
+  gender: 'neutral'
+  prune_only_start_step: 2400
+  prune_only_end_step: 3300
+  prune_only_interval: 300
+  prune_size_threshold: 0.008
+  apose: true
+  bg_white: false
+
+  prompt_processor_type: "texture-structure-prompt-processor"
+  prompt_processor:
+    use_perp_neg: false
+    pretrained_model_name_or_path: "stabilityai/stable-diffusion-2-base"
+    negative_prompt: "shadow, dark face, colorful hands, eyeglass, glasses, (deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime:1.4), text, close up, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck"
+    prompt: ???
+
+  guidance_type: "dual-branch-guidance"
+  guidance:
+    pretrained_model_name_or_path: "stabilityai/stable-diffusion-2-base"
+    model_key: "/path/to/pretrained/texture-structure_joint_model"
+    vae_key: "stabilityai/sd-vae-ft-mse"
+    guidance_scale: 7.5
+    weighting_strategy: sds
+    min_step_percent: 0.02
+    max_step_percent: 0.98
+    grad_clip: [0,1.5,2.0,1000]
+    lw_depth: 0.5
+    guidance_rescale: 0.75
+    original_size: 1024
+    target_size: 1024
+    use_anpg: true
+    enable_memory_efficient_attention: true
+    grad_clip_pixel: true
+    grad_clip_threshold: 1.0
+
+  loggers:
+    wandb:
+      enable: false
+      project: 'threestudio'
+      name: None
+
+  loss:
+    lambda_sds: 1.
+    lambda_sparsity: 1.
+    lambda_opaque: 0.0
+  optimizer:
+    name: Adam
+    args:
+      lr: 0.001
+      betas: [0.9, 0.99]
+      eps: 1.e-15
+
+trainer:
+  max_steps: 3600
+  log_every_n_steps: 1
+  num_sanity_val_steps: 0
+  val_check_interval: 100
+  enable_progress_bar: true
+  precision: 16-mixed
+
+checkpoint:
+  save_last: true # save at each validation time
+  save_top_k: -1
+  every_n_train_steps: ${trainer.max_steps}
