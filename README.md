@@ -117,9 +117,11 @@ This work is built on many amazing research works and open-source projects, incl
 
 ## Notes
 
-* We train on the resolution of 1024x1024 with a batch size of 8. The whole optimization process takes one hour on a single NVIDIA A100 (40GB) GPU. We recommend to use a smaller batch size if you want to decrease the training time or GPU memory cost.
+* We train on the resolution of 1024x1024 with a batch size of 8. The whole optimization process takes one hour on a single NVIDIA A100 (40GB) GPU. We recommend using a smaller batch size if you want to decrease the training time or GPU memory cost.
 
 * There is a minor difference between the main paper and code implementation. In the main paper, we use an annealed negative prompt guidance to gradually drop the weight of negative score. In practice, we empirically find that a similar approach proposed in a concurrent work [NFSD](https://arxiv.org/abs/2310.17590) to turn off the negative score at small timesteps yields slightly stabler optimization. You are free to switch between two variants by using the timestep-conditioned binary mask or a dropping weighting term in [L385](https://github.com/alvinliu0/HumanGaussian/blob/main/threestudio/models/guidance/dual_branch_guidance.py#L385) of the `threestudio/models/guidance/dual_branch_guidance.py`.
+
+* The idea of using classifier-score and negative prompt as SDS guidance is similar to some concurrent works like [CSD](https://arxiv.org/abs/2310.19415) and [NFSD](https://arxiv.org/abs/2310.17590), which is also proven useful in concurrent study like [AYG](https://arxiv.org/abs/2312.13763). While our work characterizes a dual-branch SDS (both RGB and depth modalities) and focuses on the human domain, we recommend you kindly citing their works:)
 
 ## Citation
 If you find this repository/work helpful in your research, welcome to cite the paper and give a star.
