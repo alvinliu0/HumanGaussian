@@ -1,0 +1,15 @@
+Disclaimer:
+1. Please carefully read and comply with the open-source license applicable to this code before using it. 
+2. Please carefully read and comply with the intellectual property declaration applicable to this code before using it.
+3. This open-source code runs completely offline and does not collect any personal information or other data. If you use this code to provide services to end-users and collect related data, please take necessary compliance measures according to applicable laws and regulations (such as publishing privacy policies, adopting necessary data security strategies, etc.). If the collected data involves personal information, user consent must be obtained (if applicable). Any legal liabilities arising from this are unrelated to Tencent.
+4. Without Tencent's written permission, you are not authorized to use the names or logos legally owned by Tencent, such as "Tencent." Otherwise, you may be liable for legal responsibilities.
+5. This open-source code does not have the ability to directly provide services to end-users. If you need to use this code for further model training or demos, as part of your product to provide services to end-users, or for similar use, please comply with applicable laws and regulations for your product or service. Any legal liabilities arising from this are unrelated to Tencent.
+6. It is prohibited to use this open-source code for activities that harm the legitimate rights and interests of others (including but not limited to fraud, deception, infringement of others' portrait rights, reputation rights, etc.), or other behaviors that violate applicable laws and regulations or go against social ethics and good customs (including providing incorrect or false information, spreading pornographic, terrorist, and violent information, etc.). Otherwise, you may be liable for legal responsibilities.
+
+免责声明
+1、请您在使用本代码前仔细阅读并遵守相关页面公布的适用于本代码的开源协议。
+2、请您在使用本代码前仔细阅读并遵守相关页面公布的适用于本代码的知识产权声明。
+3、本开源代码完全离线运行，不会收集任何个人信息或其他任何数据。如您使用本代码向终端用户提供服务并收集相关数据的，请您根据适用的法律法规采取必要的合规措施（如：公布隐私政策，采取必要的数据安全策略等）；如您收集的数据涉及个人信息的，须取得用户同意（如适用）；因此产生的任何法律责任与腾讯公司无关。
+4、未经腾讯公司书面许可，您无权使用“腾讯”以及“Tencent”等腾讯公司享有合法权利的名称或LOGO；否则，您可能须自行承担相应的法律责任。
+5、本开源代码并不具备直接向终端用户提供服务的能力，如您须使用本代码进一步进行模型训练、制作Demo、作为产品的一部分向终端用户提供服务或进行类似使用的，请遵守适用于您产品或服务的法律法规；因此产生的任何法律责任与腾讯公司无关。
+6、禁止使用本开源代码从事损害他人合法权益的行为（包括但不限于：欺诈，骗取财物，侵犯他人肖像权、名誉权等），以及其他违反适用法律法规或违背社会公序良俗、良好风尚的行为（包括：提供错误或虚假信息，传播色情、恐怖以及暴力信息等）；否则，您可能须自行承担相应的法律责任。
